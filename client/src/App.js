@@ -1,23 +1,22 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import { Routes, Route } from 'react-router-dom';
+import NameInputPage from './components/NameInputPage';
+import MoodInputPage from './components/MoodInputPage';
+import ActivityInputPage from './components/ActivityInputPage';
+import PlaylistPage from './components/PlaylistPage';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+    <div>
+      <header className="header">
+        <h1>GroovyGuru</h1>
       </header>
+      <Routes>
+        <Route path="/" element={<NameInputPage />} exact />
+        <Route path="/mood" element={<MoodInputPage />} />
+        <Route path="/activity" element={<ActivityInputPage />} />
+        <Route path="/playlist" element={<PlaylistPage />} />
+      </Routes>
     </div>
   );
 }
