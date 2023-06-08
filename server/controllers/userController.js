@@ -24,15 +24,14 @@ const refreshSpotifyToken = async () => {
 
     const response = await axios.post(url, data, { headers });
     spotifyToken = response.data.access_token;
-
-    setTimeout(refreshSpotifyToken, (response.data.expires_in - 300) * 1000);
   } catch (error) {
-    console.error(error);
-    setTimeout(refreshSpotifyToken, 60 * 1000);
+    console.error(`Error refreshing Spotify token: ${error.message}`);
   }
 };
 
 refreshSpotifyToken();
+
+setInterval(refreshSpotifyToken, 1000 * 60 * 60);
 
 exports.createUser = async (req, res) => {
   const { name, mood, activity } = req.body;
@@ -52,5 +51,28 @@ exports.createUser = async (req, res) => {
 };
 
 exports.getSpotifyToken = async (req, res) => {
-  res.json({ access_token: spotifyToken });
+  try {
+    res.json({ access_token: spotifyToken });
+  } catch (error) {
+    res.status(400).json({ message: error.message });
+  }
+};
+
+exports.searchSpotify = async (req, res) => {
+  try {
+    const { mood, activity } = req.params;
+    const query = `${mood} ${activity}`;
+    const url = `https://api.spotify.com/v1/search?q=${query}&type=playlist&limit=6`;
+
+    const headers = {
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${spotifyToken}`,
+    };
+
+    const response = await axios.get(url, { headers });
+    res.json(response.data);
+  } catch (error) {
+    res.status(400).json({ message: error.message });
+  }
 };

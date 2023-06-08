@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React from 'react';
+import { useNavigate, useLocation } from 'react-router-dom';
 import Bubble from './Bubble';
 
 const activities = [
@@ -7,9 +7,6 @@ const activities = [
   'Reading',
   'Studying',
   'Working',
-  'Relaxing',
-  'Hiking',
-  'Gardening',
   'Yoga',
   'Party',
   'BBQ',
@@ -17,24 +14,26 @@ const activities = [
   'Traveling',
   'Picnic',
   'Cooking',
-  'Chilling',
+  'Showering',
   'Dog Walking',
   'Playing Games',
   'Painting',
-  'Golf',
-  'sleeping',
+  'House Work',
+  'Sleeping',
+  'Bath',
+  'Sports',
+  'Chilling',
+  'Hiking',
 ];
 
 function ActivityInputPage() {
-  const [selectedActivity, setSelectedActivity] = useState(null);
   const navigate = useNavigate();
+  const location = useLocation();
+  const queryParams = new URLSearchParams(location.search);
+  const selectedMood = queryParams.get('mood');
 
   const handleBubbleClick = (activity) => {
-    setSelectedActivity(activity);
-  };
-
-  const handleNextClick = () => {
-    navigate('/playlist');
+    navigate(`/playlist?mood=${selectedMood}&activity=${activity}`);
   };
 
   return (
@@ -46,17 +45,9 @@ function ActivityInputPage() {
             key={index}
             name={activity}
             onClick={() => handleBubbleClick(activity)}
-            isSelected={selectedActivity === activity}
           />
         ))}
       </div>
-      <button
-        className="button"
-        onClick={handleNextClick}
-        disabled={!selectedActivity}
-      >
-        Next
-      </button>
     </div>
   );
 }

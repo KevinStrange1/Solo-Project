@@ -1,22 +1,31 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
+import axios from 'axios';
 
 function PlaylistPage() {
   const [playlists, setPlayLists] = useState([]);
   const navigate = useNavigate();
+  const location = useLocation();
 
-  const selectedMood = ''; /* get selectedMood */
-  const selectedActivity = ''; /* get selected activity */
+  const queryParams = new URLSearchParams(location.search);
+  const selectedMood = queryParams.get('mood'); /* get selectedMood */
+  const selectedActivity =
+    queryParams.get('activity'); /* get selected activity */
 
-  // useEffect(() => {
-  //   fetchPlayLists(selectedMood, selectedActivity)
-  //     .then((playlists) => {
-  //       setPlayLists(playlists);
-  //     })
-  //     .catch((error) => {
-  //       console.error('Error fetching playlists:', error);
-  //     });
-  // }, [selectedMood, selectedActivity]);
+  useEffect(() => {
+    const fetchPlayLists = async () => {
+      try {
+        const response = await axios.get(
+          `http://localhost:3001/spotify-search/${selectedMood}/${selectedActivity}`
+        );
+        console.log(response.data.playlists.items);
+        setPlayLists(response.data.playlists.items);
+      } catch (error) {
+        console.error('Error fetching playlists:', error);
+      }
+    };
+    fetchPlayLists();
+  }, [selectedMood, selectedActivity]);
 
   const handlePlaylistClick = (playlist) => {
     // Do something with playlist
@@ -26,18 +35,21 @@ function PlaylistPage() {
     navigate('/');
   };
 
-  // if (playlists.length === 0) {
-  //   return <div>Loading...</div>;
-  // }
-
   return (
     <div className="container">
       <h1>Recommended Playlists</h1>
-      {playlists.map((playlist) => (
-        <div key={playlist.id} onClick={() => handlePlaylistClick(playlist)}>
-          {playlist.name}
-        </div>
-      ))}
+      <div className="playlist">
+        {playlists.map((playlist) => (
+          <div key={playlist.id} onClick={() => handlePlaylistClick(playlist)}>
+            <img
+              className="images"
+              src={playlist.images[0].url}
+              alt={playlist.name}
+            />
+            <div className="playlist-title">{playlist.name}</div>
+          </div>
+        ))}
+      </div>
       <button className="button" onClick={handleRestartClick}>
         Start Over
       </button>

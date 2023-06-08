@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import Bubble from './Bubble';
 
@@ -26,15 +26,10 @@ const moods = [
 ];
 
 function MoodInputPage() {
-  const [selectedMood, setSelectedMood] = useState(null);
   const navigate = useNavigate();
 
   const handleBubbleClick = (mood) => {
-    setSelectedMood(mood);
-  };
-
-  const handleNextClick = () => {
-    navigate('/activity');
+    navigate(`/activity?mood=${mood}`);
   };
 
   return (
@@ -46,17 +41,9 @@ function MoodInputPage() {
             key={index}
             name={mood}
             onClick={() => handleBubbleClick(mood)}
-            isSelected={selectedMood === mood}
           />
         ))}
       </div>
-      <button
-        className="button"
-        onClick={handleNextClick}
-        disabled={!selectedMood}
-      >
-        Next
-      </button>
     </div>
   );
 }
