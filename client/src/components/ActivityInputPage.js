@@ -2,7 +2,28 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Bubble from './Bubble';
 
-const activities = ['Running', 'Reading', 'Studying', 'Working', 'Relaxing'];
+const activities = [
+  'Exercising',
+  'Reading',
+  'Studying',
+  'Working',
+  'Relaxing',
+  'Hiking',
+  'Gardening',
+  'Yoga',
+  'Party',
+  'BBQ',
+  'Beach',
+  'Traveling',
+  'Picnic',
+  'Cooking',
+  'Chilling',
+  'Dog Walking',
+  'Playing Games',
+  'Painting',
+  'Golf',
+  'sleeping',
+];
 
 function ActivityInputPage() {
   const [selectedActivity, setSelectedActivity] = useState(null);
