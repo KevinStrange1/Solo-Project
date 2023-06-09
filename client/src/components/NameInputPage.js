@@ -11,7 +11,7 @@ function NameInputPage() {
 
   const handleFormSubmit = (event) => {
     event.preventDefault();
-    navigate('/mood');
+    navigate(`/mood?name=${name}`);
   };
 
   return (

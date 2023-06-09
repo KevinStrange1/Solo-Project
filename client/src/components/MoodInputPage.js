@@ -1,5 +1,5 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import Bubble from './Bubble';
 
 const moods = [
@@ -27,9 +27,12 @@ const moods = [
 
 function MoodInputPage() {
   const navigate = useNavigate();
+  const location = useLocation();
+  const queryParams = new URLSearchParams(location.search);
+  const selectedName = queryParams.get('name');
 
   const handleBubbleClick = (mood) => {
-    navigate(`/activity?mood=${mood}`);
+    navigate(`/activity?name=${selectedName}&mood=${mood}`);
   };
 
   return (

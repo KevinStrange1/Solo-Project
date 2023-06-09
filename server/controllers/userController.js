@@ -76,3 +76,18 @@ exports.searchSpotify = async (req, res) => {
     res.status(400).json({ message: error.message });
   }
 };
+
+exports.addSearch = async (req, res) => {
+  const { name, mood, activity } = req.body;
+  try {
+    let user = await User.findOne({ name });
+    if (!user) {
+      user = new User({ name });
+    }
+    user.searches.push({ mood, activity });
+    await user.save();
+    res.status(201).json(user);
+  } catch (error) {
+    res.status(400).json({ message: error.message });
+  }
+};

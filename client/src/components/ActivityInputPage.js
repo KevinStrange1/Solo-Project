@@ -31,9 +31,12 @@ function ActivityInputPage() {
   const location = useLocation();
   const queryParams = new URLSearchParams(location.search);
   const selectedMood = queryParams.get('mood');
+  const selectedName = queryParams.get('name');
 
   const handleBubbleClick = (activity) => {
-    navigate(`/playlist?mood=${selectedMood}&activity=${activity}`);
+    navigate(
+      `/playlist?name=${selectedName}&mood=${selectedMood}&activity=${activity}`
+    );
   };
 
   return (

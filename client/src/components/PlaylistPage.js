@@ -13,6 +13,7 @@ function PlaylistPage() {
   const selectedMood = queryParams.get('mood'); /* get selectedMood */
   const selectedActivity =
     queryParams.get('activity'); /* get selected activity */
+  const selectedName = queryParams.get('name');
 
   useEffect(() => {
     const fetchPlayLists = async () => {
@@ -29,6 +30,21 @@ function PlaylistPage() {
     fetchPlayLists();
   }, [selectedMood, selectedActivity]);
 
+  useEffect(() => {
+    const addSearch = async () => {
+      try {
+        await axios.post('http://localhost:3001/add-search', {
+          name: selectedName,
+          mood: selectedMood,
+          activity: selectedActivity,
+        });
+      } catch (error) {
+        console.error('Failed to add search:', error);
+      }
+    };
+    addSearch();
+  }, [selectedMood, selectedActivity, selectedName]);
+
   const handlePlaylistClick = (playlist) => {
     setSelectedPlaylist(playlist);
   };
@@ -44,7 +60,7 @@ function PlaylistPage() {
         <PlaylistPlayer playlist={selectedPlaylist} />
       ) : (
         <>
-          <h1>Recommended Playlists</h1>
+          <h1>Recommended Playlists for {selectedName} </h1>
           <div className="playlist">
             {playlists.map((playlist) => (
               <div
