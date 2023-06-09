@@ -40,14 +40,23 @@ function PlaylistPage() {
       <h1>Recommended Playlists</h1>
       <div className="playlist">
         {playlists.map((playlist) => (
-          <div key={playlist.id} onClick={() => handlePlaylistClick(playlist)}>
+          <a
+            key={playlist.id}
+            href={playlist.external_urls.spotify}
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={(event) => {
+              event.stopPropagation();
+              handlePlaylistClick(playlist);
+            }}
+          >
             <img
               className="images"
               src={playlist.images[0].url}
               alt={playlist.name}
             />
             <div className="playlist-title">{playlist.name}</div>
-          </div>
+          </a>
         ))}
       </div>
       <button className="button" onClick={handleRestartClick}>
