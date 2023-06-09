@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import axios from 'axios';
+import PlaylistPlayer from './PlaylistPlayer';
 
 function PlaylistPage() {
   const [playlists, setPlayLists] = useState([]);
+  const [selectedPlaylist, setSelectedPlaylist] = useState(null);
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -28,37 +30,40 @@ function PlaylistPage() {
   }, [selectedMood, selectedActivity]);
 
   const handlePlaylistClick = (playlist) => {
-    // Do something with playlist
+    setSelectedPlaylist(playlist);
   };
 
   const handleRestartClick = () => {
+    setSelectedPlaylist(null);
     navigate('/');
   };
 
   return (
     <div className="container">
-      <h1>Recommended Playlists</h1>
-      <div className="playlist">
-        {playlists.map((playlist) => (
-          <a
-            key={playlist.id}
-            href={playlist.external_urls.spotify}
-            target="_blank"
-            rel="noopener noreferrer"
-            onClick={(event) => {
-              event.stopPropagation();
-              handlePlaylistClick(playlist);
-            }}
-          >
-            <img
-              className="images"
-              src={playlist.images[0].url}
-              alt={playlist.name}
-            />
-            <div className="playlist-title">{playlist.name}</div>
-          </a>
-        ))}
-      </div>
+      {selectedPlaylist ? (
+        <PlaylistPlayer playlist={selectedPlaylist} />
+      ) : (
+        <>
+          <h1>Recommended Playlists</h1>
+          <div className="playlist">
+            {playlists.map((playlist) => (
+              <div
+                key={playlist.id}
+                onClick={() => {
+                  handlePlaylistClick(playlist);
+                }}
+              >
+                <img
+                  className="images"
+                  src={playlist.images[0].url}
+                  alt={playlist.name}
+                />
+                <div className="playlist-title">{playlist.name}</div>
+              </div>
+            ))}
+          </div>
+        </>
+      )}
       <button className="button" onClick={handleRestartClick}>
         Start Over
       </button>
