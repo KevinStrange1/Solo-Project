@@ -1,58 +1,74 @@
 @import url('https://fonts.googleapis.com/css2?family=Bagel+Fat+One&display=swap');
 
-body {
-  /* background-image: linear-gradient(
-    to bottom right,
-    #205072,
-    #329d9c,
-    #56c596,
-    #7be495,
-    #cff4d2
-  ); */
-  background-color: #504e50;
+*,
+html {
+  box-sizing: border-box;
   margin: 0;
   padding: 0;
+  height: 100%;
+}
+
+body {
+  background-image: linear-gradient(to bottom, #361930, #080a15);
+  background-color: #331b2f;
   font-family: Arial, sans-serif;
   color: #f4f4f7;
+  height: 100%;
 }
 
-.header {
-  color: #42cfa0;
+.main {
+  height: 100%;
+  overflow: scroll;
+}
+
+.hate {
   display: flex;
   justify-content: center;
-  font-size: 5vh;
-  margin-top: 1em;
+  height: auto;
+}
+.header {
+  background-image: linear-gradient(to right, #2b6989, #de5c21);
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  display: flex;
+  justify-content: center;
+  font-size: 3.5vh;
   font-family: 'Bagel Fat One', cursive;
+  margin: 20px;
+  height: auto;
+  width: 40vh;
 }
 
-.container {
+.monkey-image {
+  width: 100%;
+  height: auto;
+  padding: 10px;
+  margin: 20px 0 20px 0;
+}
+
+.container-name-page {
   display: flex;
   flex-direction: column;
+  justify-content: space-around;
   align-items: center;
-  height: 73vh;
   text-align: center;
-  padding: 1em;
-}
-
-.bubble-container {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 1em;
-  margin-top: 1em;
+  height: auto;
 }
 
 .button {
   font-size: 1.5em;
-  box-shadow: inset 0 0 0 0 #97b2a2;
+  color: white;
+  height: auto;
+  box-shadow: inset 0 0 0 0 #de5c21;
   background-color: transparent;
   border: none;
   margin-top: 1em;
   padding: 0.5em 1em;
-  transition: color 0.5s ease-in-out, box-shadow 0.5s ease-in-out;
+  transition: color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
 }
+
 .button:hover {
-  box-shadow: inset 100px 0 0 0 #97b2a2;
+  box-shadow: inset 100px 0 0 0 #de5c21;
   border-radius: 30px;
   color: white;
 }
@@ -60,7 +76,15 @@ body {
 .form {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  height: auto;
+}
+
+.label {
+  height: auto;
+}
+
+.form-button {
+  margin: 30px;
 }
 
 .form input {
@@ -68,17 +92,42 @@ body {
   font-size: 1em;
   border-radius: 10px;
   text-align: center;
+  height: 30px;
+  margin: 20px;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  text-align: center;
+  height: auto;
+}
+
+.bubble-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  height: auto;
+}
+
+.text-box {
+  height: 6vh;
+  margin: 10px;
+  font-size: 2.5vh;
 }
 
 .bubble {
-  text-transform: uppercase;
+  /* text-transform: uppercase; */
   text-decoration: none;
-  padding: 15px 40px;
-  margin: 20px;
   display: inline-block;
   border-radius: 100px;
   transition: all 0.2s;
   position: relative;
+  font-size: 2vh;
+  padding: 15px;
+  margin: 15px;
 }
 
 .bubble:hover {
@@ -92,7 +141,7 @@ body {
 }
 
 .bubble-white {
-  background-color: #97b2a2;
+  background-color: #2b6989;
 }
 
 .bubble::after {
@@ -109,7 +158,7 @@ body {
 }
 
 .bubble-white::after {
-  background-color: #97b2a2;
+  background-color: #de5c21;
 }
 
 .bubble:hover::after {
@@ -122,27 +171,35 @@ body {
   animation-fill-mode: backwards;
 }
 
-.bubble-clicked {
-  background-color: #97b2a2;
-  color: #f4f4f7;
-}
-
 .playlist {
   display: flex;
-  flex-wrap: wrap;
   justify-content: center;
-  padding: 5px;
-  margin: 5px;
-  width: 800px;
+  flex-wrap: wrap;
+  gap: 5px;
+  width: 100%;
+  height: auto;
 }
 
 .playlist-title {
-  width: 200px;
+  width: 15vh;
 }
 
 .images {
-  height: 200px;
+  height: 17vh;
   padding: 10px;
+}
+
+.spotify-player {
+  height: 700px;
+  margin: 10px;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+h2 {
+  height: auto;
+  padding: 5px;
+  margin: 5px;
 }
 
 @keyframes moveInBottom {
@@ -154,27 +211,5 @@ body {
   100% {
     opacity: 1;
     transform: translateY(0px);
-  }
-}
-
-@media screen and (max-width: 768px) {
-  .header {
-    font-size: 3vh;
-  }
-
-  .button {
-    font-size: 1em;
-  }
-
-  .form input {
-    font-size: 0.8em;
-  }
-
-  .container {
-    height: 85vh;
-  }
-
-  .playlist {
-    width: auto;
   }
 }

@@ -21,9 +21,8 @@ const activities = [
   'House Work',
   'Sleeping',
   'Bath',
-  'Sports',
-  'Chilling',
   'Hiking',
+  'Chilling',
 ];
 
 function ActivityInputPage() {
