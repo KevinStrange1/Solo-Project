@@ -64,6 +64,7 @@ function PlaylistPage() {
           <div className="playlist">
             {playlists.map((playlist) => (
               <div
+                className="image-title"
                 key={playlist.id}
                 onClick={() => {
                   handlePlaylistClick(playlist);

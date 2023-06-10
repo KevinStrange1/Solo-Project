@@ -99,10 +99,9 @@ body {
 .container {
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
   align-items: center;
   text-align: center;
-  height: auto;
+  height: 100%;
 }
 
 .bubble-container {
@@ -126,8 +125,10 @@ body {
   transition: all 0.2s;
   position: relative;
   font-size: 2vh;
-  padding: 15px;
+  padding: 15px 50px;
   margin: 15px;
+  height: auto;
+  box-shadow: 4px 8px 8px #72327674;
 }
 
 .bubble:hover {
@@ -182,11 +183,16 @@ body {
 
 .playlist-title {
   width: 15vh;
+  height: auto;
 }
 
 .images {
   height: 17vh;
   padding: 10px;
+}
+
+.image-title {
+  height: auto;
 }
 
 .spotify-player {
@@ -196,7 +202,8 @@ body {
   overflow: hidden;
 }
 
-h2 {
+h2,
+h1 {
   height: auto;
   padding: 5px;
   margin: 5px;
@@ -211,5 +218,20 @@ h2 {
   100% {
     opacity: 1;
     transform: translateY(0px);
+  }
+}
+
+@media only screen and (min-width: 700px) {
+  .bubble-container {
+    margin-top: 100px;
+    max-width: 1400px;
+  }
+
+  .bubble {
+    margin: 35px;
+  }
+
+  .playlist {
+    max-width: 1400px;
   }
 }
