@@ -37,11 +37,11 @@ function MoodInputPage() {
 
   return (
     <div className="container">
-      <h1>Select your mood</h1>
+      <h2>Select your mood</h2>
       <div className="bubble-container">
-        {moods.map((mood, index) => (
+        {moods.map((mood) => (
           <Bubble
-            key={index}
+            key={mood}
             name={mood}
             onClick={() => handleBubbleClick(mood)}
           />

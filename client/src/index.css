@@ -1,5 +1,16 @@
 @import url('https://fonts.googleapis.com/css2?family=Bagel+Fat+One&display=swap');
 
+:root {
+  --from-background-color: #331b2f;
+  --to-backgound-color: #080a15;
+  --text-color: #f4f4f7;
+  --header-from-background-color: #2b6989;
+  --header-to-background-color: #de5c21;
+  --button-background-color: #de5c21;
+  --button-color: #2b6989;
+  --button-box-shadow: #72327674;
+}
+
 *,
 html {
   box-sizing: border-box;
@@ -9,14 +20,18 @@ html {
 }
 
 body {
-  background-image: linear-gradient(to bottom, #361930, #080a15);
-  background-color: #331b2f;
+  background-image: linear-gradient(
+    to bottom,
+    var(--from-background-color),
+    var(--to-backgound-color)
+  );
+  background-color: var(--from-background-color);
   font-family: Arial, sans-serif;
-  color: #f4f4f7;
+  color: var(--text-color);
   height: 100%;
 }
 
-.main {
+main {
   height: 100%;
   overflow: scroll;
 }
@@ -26,8 +41,12 @@ body {
   justify-content: center;
   height: auto;
 }
-.header {
-  background-image: linear-gradient(to right, #2b6989, #de5c21);
+header {
+  background-image: linear-gradient(
+    to right,
+    var(--header-from-background-color),
+    var(--header-to-background-color)
+  );
   background-clip: text;
   -webkit-text-fill-color: transparent;
   display: flex;
@@ -57,9 +76,9 @@ body {
 
 .button {
   font-size: 1.5em;
-  color: white;
+  color: var(--text-color);
   height: auto;
-  box-shadow: inset 0 0 0 0 #de5c21;
+  box-shadow: inset 0 0 0 0 var(--button-background-color);
   background-color: transparent;
   border: none;
   margin-top: 1em;
@@ -69,9 +88,9 @@ body {
 }
 
 .button:hover {
-  box-shadow: inset 250px 0 0 0 #de5c21;
+  box-shadow: inset 250px 0 0 0 var(--button-background-color);
   border-radius: 30px;
-  color: white;
+  color: var(--text-color);
 }
 
 .form {
@@ -143,7 +162,7 @@ body {
 }
 
 .bubble-white {
-  background-color: #2b6989;
+  background-color: var(--button-color);
 }
 
 .bubble::after {
@@ -160,7 +179,7 @@ body {
 }
 
 .bubble-white::after {
-  background-color: #de5c21;
+  background-color: var(--button-background-color);
 }
 
 .bubble:hover::after {
@@ -235,6 +254,10 @@ h1 {
   }
 
   .playlist {
-    max-width: 1400px;
+    max-width: 800px;
+  }
+
+  .monkey-image {
+    max-width: 650px;
   }
 }

@@ -5,14 +5,17 @@ import NameInputPage from './components/NameInputPage';
 import MoodInputPage from './components/MoodInputPage';
 import ActivityInputPage from './components/ActivityInputPage';
 import PlaylistPage from './components/PlaylistPage';
+import useAuth from './components/useAuth';
 
 const code = new URLSearchParams(window.location.search).get('code');
 
 function App() {
+  const accessToken = useAuth(code);
+
   return (
-    <div className="main">
+    <main>
       <div className="hate">
-        <header className="header">
+        <header>
           <h1>GroovyGuru</h1>
         </header>
       </div>
@@ -20,9 +23,12 @@ function App() {
         <Route path="/" element={code ? <NameInputPage /> : <Login />} exact />
         <Route path="/mood" element={<MoodInputPage />} />
         <Route path="/activity" element={<ActivityInputPage />} />
-        <Route path="/playlist" element={<PlaylistPage code={code} />} />
+        <Route
+          path="/playlist"
+          element={<PlaylistPage accessToken={accessToken} />}
+        />
       </Routes>
-    </div>
+    </main>
   );
 }
 

@@ -40,11 +40,11 @@ function ActivityInputPage() {
 
   return (
     <div className="container">
-      <h1>Select your activity</h1>
+      <h2>Select your activity</h2>
       <div className="bubble-container">
-        {activities.map((activity, index) => (
+        {activities.map((activity) => (
           <Bubble
-            key={index}
+            key={activity}
             name={activity}
             onClick={() => handleBubbleClick(activity)}
           />

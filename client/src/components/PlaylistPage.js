@@ -2,9 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import axios from 'axios';
 import PlaylistPlayer from './PlaylistPlayer';
-import useAuth from './useAuth';
 
-function PlaylistPage({ code }) {
+function PlaylistPage({ accessToken }) {
   const [playlists, setPlayLists] = useState([]);
   const [selectedPlaylist, setSelectedPlaylist] = useState(null);
   const navigate = useNavigate();
@@ -15,8 +14,6 @@ function PlaylistPage({ code }) {
   const selectedActivity =
     queryParams.get('activity'); /* get selected activity */
   const selectedName = queryParams.get('name');
-  const accessToken = useAuth(code);
-  console.log(accessToken);
 
   useEffect(() => {
     const fetchPlayLists = async () => {
@@ -24,7 +21,6 @@ function PlaylistPage({ code }) {
         const response = await axios.get(
           `http://localhost:3001/spotify-search/${selectedMood}/${selectedActivity}`
         );
-        console.log(response.data.playlists.items);
         setPlayLists(response.data.playlists.items);
       } catch (error) {
         console.error('Error fetching playlists:', error);
@@ -59,11 +55,13 @@ function PlaylistPage({ code }) {
 
   return (
     <div className="container">
-      {selectedPlaylist ? (
+      {playlists.length === 0 ? (
+        <h2>Sorry, something went wrong. Please try different options.</h2>
+      ) : selectedPlaylist ? (
         <PlaylistPlayer playlist={selectedPlaylist} accessToken={accessToken} />
       ) : (
         <>
-          <h1>Recommended Playlists for {selectedName} </h1>
+          <h2>Recommended Playlists for {selectedName} </h2>
           <div className="playlist">
             {playlists.map((playlist) => (
               <div
