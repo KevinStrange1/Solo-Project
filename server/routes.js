@@ -6,11 +6,9 @@ const {
   addSearch,
   login,
   refresh,
-  // getSpotifyToken,
 } = require('./controllers/userController');
 
 router.post('/', createUser);
-// router.get('/spotify-token', getSpotifyToken);
 router.get('/spotify-search/:mood/:activity', searchSpotify);
 router.post('/add-search', addSearch);
 router.post('/login', login);

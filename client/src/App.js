@@ -17,14 +17,10 @@ function App() {
         </header>
       </div>
       <Routes>
-        <Route
-          path="/"
-          element={code ? <NameInputPage code={code} /> : <Login />}
-          exact
-        />
+        <Route path="/" element={code ? <NameInputPage /> : <Login />} exact />
         <Route path="/mood" element={<MoodInputPage />} />
         <Route path="/activity" element={<ActivityInputPage />} />
-        <Route path="/playlist" element={<PlaylistPage />} />
+        <Route path="/playlist" element={<PlaylistPage code={code} />} />
       </Routes>
     </div>
   );

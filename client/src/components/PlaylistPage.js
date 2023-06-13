@@ -2,8 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import axios from 'axios';
 import PlaylistPlayer from './PlaylistPlayer';
+import useAuth from './useAuth';
 
-function PlaylistPage() {
+function PlaylistPage({ code }) {
   const [playlists, setPlayLists] = useState([]);
   const [selectedPlaylist, setSelectedPlaylist] = useState(null);
   const navigate = useNavigate();
@@ -14,6 +15,8 @@ function PlaylistPage() {
   const selectedActivity =
     queryParams.get('activity'); /* get selected activity */
   const selectedName = queryParams.get('name');
+  const accessToken = useAuth(code);
+  console.log(accessToken);
 
   useEffect(() => {
     const fetchPlayLists = async () => {
@@ -51,13 +54,13 @@ function PlaylistPage() {
 
   const handleRestartClick = () => {
     setSelectedPlaylist(null);
-    navigate('/mood');
+    navigate('/');
   };
 
   return (
     <div className="container">
       {selectedPlaylist ? (
-        <PlaylistPlayer playlist={selectedPlaylist} />
+        <PlaylistPlayer playlist={selectedPlaylist} accessToken={accessToken} />
       ) : (
         <>
           <h1>Recommended Playlists for {selectedName} </h1>

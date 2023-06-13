@@ -196,10 +196,11 @@ body {
 }
 
 .spotify-player {
-  height: 700px;
-  margin: 10px;
-  border-radius: 10px;
-  overflow: hidden;
+  height: auto;
+}
+
+.player {
+  height: auto;
 }
 
 h2,
