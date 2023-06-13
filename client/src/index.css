@@ -65,10 +65,11 @@ body {
   margin-top: 1em;
   padding: 0.5em 1em;
   transition: color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+  text-decoration: none;
 }
 
 .button:hover {
-  box-shadow: inset 100px 0 0 0 #de5c21;
+  box-shadow: inset 250px 0 0 0 #de5c21;
   border-radius: 30px;
   color: white;
 }
@@ -172,6 +173,18 @@ body {
   animation-fill-mode: backwards;
 }
 
+@keyframes moveInBottom {
+  0% {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0px);
+  }
+}
+
 .playlist {
   display: flex;
   justify-content: center;
@@ -197,6 +210,7 @@ body {
 
 .spotify-player {
   height: auto;
+  width: 60%;
 }
 
 .player {
@@ -208,18 +222,6 @@ h1 {
   height: auto;
   padding: 5px;
   margin: 5px;
-}
-
-@keyframes moveInBottom {
-  0% {
-    opacity: 0;
-    transform: translateY(30px);
-  }
-
-  100% {
-    opacity: 1;
-    transform: translateY(0px);
-  }
 }
 
 @media only screen and (min-width: 700px) {

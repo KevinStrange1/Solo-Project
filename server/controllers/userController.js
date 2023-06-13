@@ -73,7 +73,7 @@ exports.searchSpotify = async (req, res) => {
   try {
     const { mood, activity } = req.params;
     const query = `${mood} ${activity}`;
-    const url = `https://api.spotify.com/v1/search?q=${query}&type=playlist&limit=6`;
+    const url = `https://api.spotify.com/v1/search?q=${query}&type=playlist&limit=9`;
 
     const headers = {
       Accept: 'application/json',

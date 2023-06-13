@@ -5,7 +5,7 @@ const AUTH_URL =
 
 function Login() {
   return (
-    <div>
+    <div className="container">
       <a className="button " href={AUTH_URL}>
         Login With Spotify
       </a>
