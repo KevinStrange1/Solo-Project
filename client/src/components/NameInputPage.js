@@ -1,10 +1,13 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import image from '../Img/7a30b6d3-e801-4ec0-b38b-c5e6e68c13b9.png';
+import useAuth from './useAuth';
 
-function NameInputPage() {
+function NameInputPage({ code }) {
   const [name, setName] = useState('');
   const navigate = useNavigate();
+  const accessToken = useAuth(code);
+  console.log(accessToken);
 
   const handleInputChange = (event) => {
     setName(event.target.value);

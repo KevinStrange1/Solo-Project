@@ -51,7 +51,7 @@ function PlaylistPage() {
 
   const handleRestartClick = () => {
     setSelectedPlaylist(null);
-    navigate('/');
+    navigate('/mood');
   };
 
   return (
