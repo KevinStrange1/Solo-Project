@@ -7,7 +7,8 @@ function NameInputPage() {
   const navigate = useNavigate();
 
   const handleInputChange = (event) => {
-    setName(event.target.value);
+    const result = event.target.value.replace(/[^a-z]/gi, ' ');
+    setName(result);
   };
 
   const handleFormSubmit = (event) => {
@@ -22,7 +23,7 @@ function NameInputPage() {
       </div>
       <div className="form-button">
         <form className="form" onSubmit={handleFormSubmit}>
-          <label html="name-input" className="label">
+          <label htmlFor="name-input" className="label">
             Please enter your name:
           </label>
           <input

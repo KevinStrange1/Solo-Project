@@ -10,7 +10,7 @@ function PlaylistPage({ accessToken }) {
   const location = useLocation();
 
   const queryParams = new URLSearchParams(location.search);
-  const selectedMood = queryParams.get('mood'); /* get selectedMood */
+  const selectedMood = queryParams.get('mood'); /* get selected mood */
   const selectedActivity =
     queryParams.get('activity'); /* get selected activity */
   const selectedName = queryParams.get('name');

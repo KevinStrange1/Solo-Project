@@ -1,6 +1,5 @@
 const User = require('../models/User');
 const axios = require('axios');
-const qs = require('qs');
 const SpotifyWebApi = require('spotify-web-api-node');
 require('dotenv').config();
 
@@ -55,9 +54,10 @@ exports.refresh = async (req, res) => {
     refreshToken,
   });
 
-  spotifyApi.refreshAccessToken();
-  spotifyToken = data.body.accessToken
+  spotifyApi
+    .refreshAccessToken()
     .then((data) => {
+      spotifyToken = data.body.accessToken;
       res.json({
         accessToken: data.body.accessToken,
         expiresIn: data.body.expiresIn,
