@@ -7,7 +7,6 @@ GroovyGuru is a web application that generates Spotify playlists based on the us
 - User input for name, mood, and activity
 - Dynamic routing using React Router
 - Fetching data from Spotify API
-- Storing user's mood and activity choices in MongoDB
 
 ## Installation
 
@@ -31,7 +30,6 @@ Follow these steps to run the project locally:
 3. Create a .env file in the backend directory and add your MongoDB URI, Spotify Client ID, and Spotify Client Secret:
 
 ```bash copy code
-   MONGODB_URI=your_mongodb_uri
    CLIENT_ID=your_spotify_client_id
    CLIENT_SECRET=your_spotify_client_secret
 ```
