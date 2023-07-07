@@ -1,26 +1,25 @@
-const User = require('../models/User');
-const axios = require('axios');
-const SpotifyWebApi = require('spotify-web-api-node');
-require('dotenv').config();
+const User = require("../models/User");
+const axios = require("axios");
+const SpotifyWebApi = require("spotify-web-api-node");
 
-let spotifyToken = '';
+let spotifyToken = "";
 
-exports.createUser = async (req, res) => {
-  const { name, mood, activity } = req.body;
+// exports.createUser = async (req, res) => {
+//   const { name, mood, activity } = req.body;
 
-  try {
-    const newUser = new User({
-      name,
-      mood,
-      activity,
-    });
+//   try {
+//     const newUser = new User({
+//       name,
+//       mood,
+//       activity,
+//     });
 
-    await newUser.save();
-    res.status(201).json(newUser);
-  } catch (error) {
-    res.status(400).json({ message: error.message });
-  }
-};
+//     await newUser.save();
+//     res.status(201).json(newUser);
+//   } catch (error) {
+//     res.status(400).json({ message: error.message });
+//   }
+// };
 
 exports.login = async (req, res) => {
   const code = req.body.code;
@@ -76,8 +75,8 @@ exports.searchSpotify = async (req, res) => {
     const url = `https://api.spotify.com/v1/search?q=${query}&type=playlist&limit=9`;
 
     const headers = {
-      Accept: 'application/json',
-      'Content-Type': 'application/json',
+      Accept: "application/json",
+      "Content-Type": "application/json",
       Authorization: `Bearer ${spotifyToken}`,
     };
 
@@ -88,17 +87,17 @@ exports.searchSpotify = async (req, res) => {
   }
 };
 
-exports.addSearch = async (req, res) => {
-  const { name, mood, activity } = req.body;
-  try {
-    let user = await User.findOne({ name });
-    if (!user) {
-      user = new User({ name });
-    }
-    user.searches.push({ mood, activity });
-    await user.save();
-    res.status(201).json(user);
-  } catch (error) {
-    res.status(400).json({ message: error.message });
-  }
-};
+// exports.addSearch = async (req, res) => {
+//   const { name, mood, activity } = req.body;
+//   try {
+//     let user = await User.findOne({ name });
+//     if (!user) {
+//       user = new User({ name });
+//     }
+//     user.searches.push({ mood, activity });
+//     await user.save();
+//     res.status(201).json(user);
+//   } catch (error) {
+//     res.status(400).json({ message: error.message });
+//   }
+// };

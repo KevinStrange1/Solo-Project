@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react';
-import { useNavigate, useLocation } from 'react-router-dom';
-import axios from 'axios';
-import PlaylistPlayer from './PlaylistPlayer';
+import React, { useState, useEffect } from "react";
+import { useNavigate, useLocation } from "react-router-dom";
+import axios from "axios";
+import PlaylistPlayer from "./PlaylistPlayer";
 
 function PlaylistPage({ accessToken }) {
   const [playlists, setPlayLists] = useState([]);
@@ -10,10 +10,10 @@ function PlaylistPage({ accessToken }) {
   const location = useLocation();
 
   const queryParams = new URLSearchParams(location.search);
-  const selectedMood = queryParams.get('mood'); /* get selected mood */
+  const selectedMood = queryParams.get("mood"); /* get selected mood */
   const selectedActivity =
-    queryParams.get('activity'); /* get selected activity */
-  const selectedName = queryParams.get('name');
+    queryParams.get("activity"); /* get selected activity */
+  const selectedName = queryParams.get("name");
 
   useEffect(() => {
     const fetchPlayLists = async () => {
@@ -23,26 +23,26 @@ function PlaylistPage({ accessToken }) {
         );
         setPlayLists(response.data.playlists.items);
       } catch (error) {
-        console.error('Error fetching playlists:', error);
+        console.error("Error fetching playlists:", error);
       }
     };
     fetchPlayLists();
   }, [selectedMood, selectedActivity]);
 
-  useEffect(() => {
-    const addSearch = async () => {
-      try {
-        await axios.post('http://localhost:3001/add-search', {
-          name: selectedName,
-          mood: selectedMood,
-          activity: selectedActivity,
-        });
-      } catch (error) {
-        console.error('Failed to add search:', error);
-      }
-    };
-    addSearch();
-  }, [selectedMood, selectedActivity, selectedName]);
+  // useEffect(() => {
+  //   const addSearch = async () => {
+  //     try {
+  //       await axios.post('http://localhost:3001/add-search', {
+  //         name: selectedName,
+  //         mood: selectedMood,
+  //         activity: selectedActivity,
+  //       });
+  //     } catch (error) {
+  //       console.error('Failed to add search:', error);
+  //     }
+  //   };
+  //   addSearch();
+  // }, [selectedMood, selectedActivity, selectedName]);
 
   const handlePlaylistClick = (playlist) => {
     setSelectedPlaylist(playlist);
@@ -50,7 +50,7 @@ function PlaylistPage({ accessToken }) {
 
   const handleRestartClick = () => {
     setSelectedPlaylist(null);
-    navigate('/');
+    navigate("/");
   };
 
   return (

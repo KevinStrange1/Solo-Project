@@ -1,8 +1,8 @@
-@import url('https://fonts.googleapis.com/css2?family=Bagel+Fat+One&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Bagel+Fat+One&display=swap");
 
 :root {
   --from-background-color: #331b2f;
-  --to-backgound-color: #080a15;
+  --to-background-color: #080a15;
   --text-color: #f4f4f7;
   --header-from-background-color: #2b6989;
   --header-to-background-color: #de5c21;
@@ -23,7 +23,7 @@ body {
   background-image: linear-gradient(
     to bottom,
     var(--from-background-color),
-    var(--to-backgound-color)
+    var(--to-background-color)
   );
   background-color: var(--from-background-color);
   font-family: Arial, sans-serif;
@@ -52,7 +52,7 @@ header {
   display: flex;
   justify-content: center;
   font-size: 3.5vh;
-  font-family: 'Bagel Fat One', cursive;
+  font-family: "Bagel Fat One", cursive;
   margin: 20px;
   height: auto;
   width: 40vh;
@@ -166,7 +166,7 @@ header {
 }
 
 .bubble::after {
-  content: '';
+  content: "";
   display: inline-block;
   height: 100%;
   width: 100%;
