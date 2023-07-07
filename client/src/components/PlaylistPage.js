@@ -19,7 +19,7 @@ function PlaylistPage({ accessToken }) {
     const fetchPlayLists = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:3001/spotify-search/${selectedMood}/${selectedActivity}`
+          `https://grooveguru.vercel.app/spotify-search/${selectedMood}/${selectedActivity}`
         );
         setPlayLists(response.data.playlists.items);
       } catch (error) {
