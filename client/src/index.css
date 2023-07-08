@@ -51,9 +51,9 @@ header {
   -webkit-text-fill-color: transparent;
   display: flex;
   justify-content: center;
-  font-size: 3.5vh;
+  font-size: 3vh;
   font-family: "Bagel Fat One", cursive;
-  margin: 20px;
+  margin: 30px;
   height: auto;
   width: 40vh;
 }
@@ -229,11 +229,9 @@ header {
 
 .spotify-player {
   height: auto;
-  width: 60%;
 }
 
 .player {
-  height: auto;
 }
 
 h2,
