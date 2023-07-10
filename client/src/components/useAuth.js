@@ -8,6 +8,7 @@ export default function useAuth(code) {
 
   useEffect(() => {
     axios
+      // .post("http://localhost:3001/login", {
       .post("https://grooveguru.vercel.app/login", {
         code: code,
       })
@@ -29,6 +30,7 @@ export default function useAuth(code) {
 
     const interval = setInterval(() => {
       axios
+        // .post("http://localhost:3001/refresh", {
         .post("https://grooveguru.vercel.app/refresh", {
           refreshToken: refreshToken,
         })

@@ -56,10 +56,10 @@ exports.refresh = async (req, res) => {
   spotifyApi
     .refreshAccessToken()
     .then((data) => {
-      spotifyToken = data.body.accessToken;
+      spotifyToken = data.body.access_token;
       res.json({
-        accessToken: data.body.accessToken,
-        expiresIn: data.body.expiresIn,
+        accessToken: data.body.access_token,
+        expiresIn: data.body.expires_in,
       });
     })
     .catch((err) => {
@@ -72,6 +72,7 @@ exports.searchSpotify = async (req, res) => {
   try {
     const { mood, activity } = req.params;
     const query = `${mood} ${activity}`;
+    // const url = `https://api.spotify.com/v1/search?q=${query}&type=playlist&limit=9`;
     const url = `https://api.spotify.com/v1/search?q=${encodeURIComponent(
       query
     )}&type=playlist&limit=9`;
@@ -85,22 +86,17 @@ exports.searchSpotify = async (req, res) => {
     const response = await axios.get(url, { headers });
     res.json(response.data);
   } catch (error) {
-    console.error(error); // Add this line to log the error in your server logs
+    console.error(error);
     if (error.response) {
-      // The request was made and the server responded with a status code
-      // that falls out of the range of 2xx
-      console.error(error.response.data);
       console.error(error.response.status);
       console.error(error.response.headers);
       res
         .status(400)
         .json({ message: error.message, data: error.response.data });
     } else if (error.request) {
-      // The request was made but no response was received
       console.error(error.request);
       res.status(400).json({ message: error.message, request: error.request });
     } else {
-      // Something happened in setting up the request that triggered an Error
       console.error("Error", error.message);
       res.status(400).json({ message: error.message });
     }

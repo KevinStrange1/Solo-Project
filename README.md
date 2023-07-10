@@ -2,11 +2,29 @@
 
 GroovyGuru is a web application that generates Spotify playlists based on the user's mood and activity. This application is built with React.js for the frontend, Express.js and Node.js for the backend, and MongoDB for the database.
 
+## Getting Started
+
+To use the application, simply visit [GroovyGuru](https://groove-guru.vercel.app/) in your browser.
+
 ## Features
 
 - User input for name, mood, and activity
 - Dynamic routing using React Router
 - Fetching data from Spotify API
+
+## Tech Stack
+
+The core technologies used in this project are:
+
+- Frontend:
+  - React.js
+  - React Router
+- Backend:
+  - Express.js
+  - Node.js
+  - MongoDB
+
+---
 
 ## Installation
 
@@ -50,8 +68,6 @@ cd backend
 node index.js
 ```
 
-The frontend server will run on port 3000 and the backend server on port 3001.
-
 ## Usage
 
-Visit http://localhost:3000 in your browser to use the application. Enter your name, select your current mood and activity, and get a list of Spotify playlists based on your choices.
+Visit https://groove-guru.vercel.app/ in your browser to use the application. Enter your name, select your current mood and activity, and get a list of Spotify playlists based on your choices.
