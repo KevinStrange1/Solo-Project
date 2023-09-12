@@ -1,10 +1,10 @@
-const User = require("../models/User");
-const axios = require("axios");
-const SpotifyWebApi = require("spotify-web-api-node");
+// const User = require('../models/User');
+const axios = require('axios');
+const SpotifyWebApi = require('spotify-web-api-node');
 
-let spotifyToken = "";
+let spotifyToken = '';
 
-// exports.createUser = async (req, res) => {
+// export const createUser = async (req, res) => {
 //   const { name, mood, activity } = req.body;
 
 //   try {
@@ -21,7 +21,7 @@ let spotifyToken = "";
 //   }
 // };
 
-exports.login = async (req, res) => {
+export const login = async (req, res) => {
   const code = req.body.code;
   const spotifyApi = new SpotifyWebApi({
     redirectUri: process.env.REDIRECT_URI,
@@ -44,7 +44,7 @@ exports.login = async (req, res) => {
     });
 };
 
-exports.refresh = async (req, res) => {
+export const refresh = async (req, res) => {
   const refreshToken = req.body.refreshToken;
   const spotifyApi = new SpotifyWebApi({
     redirectUri: process.env.REDIRECT_URI,
@@ -68,7 +68,7 @@ exports.refresh = async (req, res) => {
     });
 };
 
-exports.searchSpotify = async (req, res) => {
+export const searchSpotify = async (req, res) => {
   try {
     const { mood, activity } = req.params;
     const query = `${mood} ${activity}`;
@@ -78,8 +78,8 @@ exports.searchSpotify = async (req, res) => {
     )}&type=playlist&limit=9`;
 
     const headers = {
-      Accept: "application/json",
-      "Content-Type": "application/json",
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
       Authorization: `Bearer ${spotifyToken}`,
     };
 
@@ -97,13 +97,13 @@ exports.searchSpotify = async (req, res) => {
       console.error(error.request);
       res.status(400).json({ message: error.message, request: error.request });
     } else {
-      console.error("Error", error.message);
+      console.error('Error', error.message);
       res.status(400).json({ message: error.message });
     }
   }
 };
 
-// exports.addSearch = async (req, res) => {
+// export const addSearch = async (req, res) => {
 //   const { name, mood, activity } = req.body;
 //   try {
 //     let user = await User.findOne({ name });

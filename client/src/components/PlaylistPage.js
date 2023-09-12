@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from "react";
-import { useNavigate, useLocation } from "react-router-dom";
-import axios from "axios";
-import PlaylistPlayer from "./PlaylistPlayer";
+import React, { useState, useEffect } from 'react';
+import { useNavigate, useLocation } from 'react-router-dom';
+import axios from 'axios';
+import PlaylistPlayer from './PlaylistPlayer';
 
 function PlaylistPage({ accessToken }) {
   const [playlists, setPlayLists] = useState([]);
@@ -10,21 +10,21 @@ function PlaylistPage({ accessToken }) {
   const location = useLocation();
 
   const queryParams = new URLSearchParams(location.search);
-  const selectedMood = queryParams.get("mood"); /* get selected mood */
+  const selectedMood = queryParams.get('mood'); /* get selected mood */
   const selectedActivity =
-    queryParams.get("activity"); /* get selected activity */
-  const selectedName = queryParams.get("name");
+    queryParams.get('activity'); /* get selected activity */
+  const selectedName = queryParams.get('name');
 
   useEffect(() => {
     const fetchPlayLists = async () => {
       try {
         const response = await axios.get(
-          `https://grooveguru.vercel.app/spotify-search/${selectedMood}/${selectedActivity}`
-          // `http://localhost:3001/spotify-search/${selectedMood}/${selectedActivity}`
+          // `https://grooveguru.vercel.app/spotify-search/${selectedMood}/${selectedActivity}`
+          `http://localhost:3001/spotify-search/${selectedMood}/${selectedActivity}`
         );
         setPlayLists(response.data.playlists.items);
       } catch (error) {
-        console.error("Error fetching playlists:", error);
+        console.error('Error fetching playlists:', error);
       }
     };
     fetchPlayLists();
@@ -51,7 +51,7 @@ function PlaylistPage({ accessToken }) {
 
   const handleRestartClick = () => {
     setSelectedPlaylist(null);
-    navigate("/");
+    navigate('/');
   };
 
   return (
