@@ -1,6 +1,7 @@
 // const User = require('../models/User');
-const axios = require('axios');
-const SpotifyWebApi = require('spotify-web-api-node');
+import axios, { AxiosError } from 'axios';
+import SpotifyWebApi from 'spotify-web-api-node';
+import { Request, Response } from 'express';
 
 let spotifyToken = '';
 
@@ -21,7 +22,7 @@ let spotifyToken = '';
 //   }
 // };
 
-export const login = async (req, res) => {
+export const login = async (req: Request, res: Response) => {
   const code = req.body.code;
   const spotifyApi = new SpotifyWebApi({
     redirectUri: process.env.REDIRECT_URI,
@@ -40,11 +41,12 @@ export const login = async (req, res) => {
       });
     })
     .catch((err) => {
+      console.log(err);
       res.sendStatus(400);
     });
 };
 
-export const refresh = async (req, res) => {
+export const refresh = async (req: Request, res: Response) => {
   const refreshToken = req.body.refreshToken;
   const spotifyApi = new SpotifyWebApi({
     redirectUri: process.env.REDIRECT_URI,
@@ -68,7 +70,7 @@ export const refresh = async (req, res) => {
     });
 };
 
-export const searchSpotify = async (req, res) => {
+export const searchSpotify = async (req: Request, res: Response) => {
   try {
     const { mood, activity } = req.params;
     const query = `${mood} ${activity}`;
@@ -85,7 +87,8 @@ export const searchSpotify = async (req, res) => {
 
     const response = await axios.get(url, { headers });
     res.json(response.data);
-  } catch (error) {
+  } catch (err) {
+    const error = err as AxiosError;
     console.error(error);
     if (error.response) {
       console.error(error.response.status);
