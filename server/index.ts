@@ -1,6 +1,6 @@
 require('dotenv').config();
 
-import express, { Express } from 'express';
+import express from 'express';
 import cors from 'cors';
 import bodyParser from 'body-parser';
 import { router } from './routes';
@@ -8,7 +8,7 @@ import { router } from './routes';
 // import {connectDB} from './models/db'
 // connectDB();
 
-const app: Express = express();
+const app = express();
 const port = process.env.PORT;
 
 app.use(cors());

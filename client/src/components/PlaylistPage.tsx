@@ -2,10 +2,13 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import axios from 'axios';
 import PlaylistPlayer from './PlaylistPlayer';
+import { Playlist } from '../types/Playlist';
 
-function PlaylistPage({ accessToken }) {
-  const [playlists, setPlayLists] = useState([]);
-  const [selectedPlaylist, setSelectedPlaylist] = useState(null);
+function PlaylistPage({ accessToken }: { accessToken: string }) {
+  const [playlists, setPlayLists] = useState<Playlist[]>([]);
+  const [selectedPlaylist, setSelectedPlaylist] = useState<Playlist | null>(
+    null
+  );
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -45,7 +48,7 @@ function PlaylistPage({ accessToken }) {
   //   addSearch();
   // }, [selectedMood, selectedActivity, selectedName]);
 
-  const handlePlaylistClick = (playlist) => {
+  const handlePlaylistClick = (playlist: Playlist) => {
     setSelectedPlaylist(playlist);
   };
 

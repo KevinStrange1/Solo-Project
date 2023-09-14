@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, ChangeEvent, FormEvent } from 'react';
 import { useNavigate } from 'react-router-dom';
 import image from '../Img/7a30b6d3-e801-4ec0-b38b-c5e6e68c13b9.png';
 
@@ -6,12 +6,12 @@ function NameInputPage() {
   const [name, setName] = useState('');
   const navigate = useNavigate();
 
-  const handleInputChange = (event) => {
+  const handleInputChange = (event: ChangeEvent<HTMLInputElement>) => {
     const result = event.target.value.replace(/[^a-z]/gi, ' ');
     setName(result);
   };
 
-  const handleFormSubmit = (event) => {
+  const handleFormSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     navigate(`/mood?name=${name}`);
   };
