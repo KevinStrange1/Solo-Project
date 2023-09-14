@@ -1,10 +1,11 @@
-const User = require("../models/User");
-const axios = require("axios");
-const SpotifyWebApi = require("spotify-web-api-node");
+// const User = require('../models/User');
+import axios, { AxiosError } from 'axios';
+import SpotifyWebApi from 'spotify-web-api-node';
+import { Request, Response } from 'express';
 
-let spotifyToken = "";
+let spotifyToken = '';
 
-// exports.createUser = async (req, res) => {
+// export const createUser = async (req: Request, res: Response) => {
 //   const { name, mood, activity } = req.body;
 
 //   try {
@@ -21,7 +22,7 @@ let spotifyToken = "";
 //   }
 // };
 
-exports.login = async (req, res) => {
+export const login = async (req: Request, res: Response) => {
   const code = req.body.code;
   const spotifyApi = new SpotifyWebApi({
     redirectUri: process.env.REDIRECT_URI,
@@ -40,11 +41,12 @@ exports.login = async (req, res) => {
       });
     })
     .catch((err) => {
+      console.log(err);
       res.sendStatus(400);
     });
 };
 
-exports.refresh = async (req, res) => {
+export const refresh = async (req: Request, res: Response) => {
   const refreshToken = req.body.refreshToken;
   const spotifyApi = new SpotifyWebApi({
     redirectUri: process.env.REDIRECT_URI,
@@ -68,7 +70,7 @@ exports.refresh = async (req, res) => {
     });
 };
 
-exports.searchSpotify = async (req, res) => {
+export const searchSpotify = async (req: Request, res: Response) => {
   try {
     const { mood, activity } = req.params;
     const query = `${mood} ${activity}`;
@@ -78,14 +80,15 @@ exports.searchSpotify = async (req, res) => {
     )}&type=playlist&limit=9`;
 
     const headers = {
-      Accept: "application/json",
-      "Content-Type": "application/json",
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
       Authorization: `Bearer ${spotifyToken}`,
     };
 
     const response = await axios.get(url, { headers });
     res.json(response.data);
-  } catch (error) {
+  } catch (err) {
+    const error = err as AxiosError;
     console.error(error);
     if (error.response) {
       console.error(error.response.status);
@@ -97,13 +100,13 @@ exports.searchSpotify = async (req, res) => {
       console.error(error.request);
       res.status(400).json({ message: error.message, request: error.request });
     } else {
-      console.error("Error", error.message);
+      console.error('Error', error.message);
       res.status(400).json({ message: error.message });
     }
   }
 };
 
-// exports.addSearch = async (req, res) => {
+// export const addSearch = async (req: Request, res: Response) => {
 //   const { name, mood, activity } = req.body;
 //   try {
 //     let user = await User.findOne({ name });

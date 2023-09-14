@@ -1,19 +1,22 @@
-import React, { useState, useEffect } from "react";
-import { useNavigate, useLocation } from "react-router-dom";
-import axios from "axios";
-import PlaylistPlayer from "./PlaylistPlayer";
+import React, { useState, useEffect } from 'react';
+import { useNavigate, useLocation } from 'react-router-dom';
+import axios from 'axios';
+import PlaylistPlayer from './PlaylistPlayer';
+import { Playlist } from '../types/Playlist';
 
-function PlaylistPage({ accessToken }) {
-  const [playlists, setPlayLists] = useState([]);
-  const [selectedPlaylist, setSelectedPlaylist] = useState(null);
+function PlaylistPage({ accessToken }: { accessToken: string }) {
+  const [playlists, setPlayLists] = useState<Playlist[]>([]);
+  const [selectedPlaylist, setSelectedPlaylist] = useState<Playlist | null>(
+    null
+  );
   const navigate = useNavigate();
   const location = useLocation();
 
   const queryParams = new URLSearchParams(location.search);
-  const selectedMood = queryParams.get("mood"); /* get selected mood */
+  const selectedMood = queryParams.get('mood'); /* get selected mood */
   const selectedActivity =
-    queryParams.get("activity"); /* get selected activity */
-  const selectedName = queryParams.get("name");
+    queryParams.get('activity'); /* get selected activity */
+  const selectedName = queryParams.get('name');
 
   useEffect(() => {
     const fetchPlayLists = async () => {
@@ -24,7 +27,7 @@ function PlaylistPage({ accessToken }) {
         );
         setPlayLists(response.data.playlists.items);
       } catch (error) {
-        console.error("Error fetching playlists:", error);
+        console.error('Error fetching playlists:', error);
       }
     };
     fetchPlayLists();
@@ -45,13 +48,13 @@ function PlaylistPage({ accessToken }) {
   //   addSearch();
   // }, [selectedMood, selectedActivity, selectedName]);
 
-  const handlePlaylistClick = (playlist) => {
+  const handlePlaylistClick = (playlist: Playlist) => {
     setSelectedPlaylist(playlist);
   };
 
   const handleRestartClick = () => {
     setSelectedPlaylist(null);
-    navigate("/");
+    navigate('/');
   };
 
   return (

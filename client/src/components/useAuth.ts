@@ -1,26 +1,26 @@
-import { useState, useEffect } from "react";
-import axios from "axios";
+import { useState, useEffect } from 'react';
+import axios from 'axios';
 
-export default function useAuth(code) {
-  const [accessToken, setAccessToken] = useState("");
-  const [refreshToken, setRefreshToken] = useState("");
+export default function useAuth(code: string | null) {
+  const [accessToken, setAccessToken] = useState('');
+  const [refreshToken, setRefreshToken] = useState('');
   const [expiresIn, setExpiresIn] = useState(0);
 
   useEffect(() => {
     axios
-      // .post("http://localhost:3001/login", {
-      .post("https://grooveguru.vercel.app/login", {
+      // .post('http://localhost:3001/login', {
+      .post('https://grooveguru.vercel.app/login', {
         code: code,
       })
       .then((res) => {
         setAccessToken(res.data.accessToken);
         setRefreshToken(res.data.refreshToken);
         setExpiresIn(res.data.expiresIn);
-        window.history.pushState({}, null, "/");
+        window.history.pushState({}, '', '/');
       })
       .catch(() => {
-        if (window.location.pathname !== "/") {
-          window.location = "/";
+        if (window.location.pathname !== '/') {
+          window.location.href = '/';
         }
       });
   }, [code]);
@@ -30,8 +30,8 @@ export default function useAuth(code) {
 
     const interval = setInterval(() => {
       axios
-        // .post("http://localhost:3001/refresh", {
-        .post("https://grooveguru.vercel.app/refresh", {
+        // .post('http://localhost:3001/refresh', {
+        .post('https://grooveguru.vercel.app/refresh', {
           refreshToken: refreshToken,
         })
         .then((res) => {
@@ -39,8 +39,8 @@ export default function useAuth(code) {
           setExpiresIn(res.data.expiresIn);
         })
         .catch(() => {
-          if (window.location.pathname !== "/") {
-            window.location = "/";
+          if (window.location.pathname !== '/') {
+            window.location.href = '/';
           }
         });
     }, (expiresIn - 60) * 1000);

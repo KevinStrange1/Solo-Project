@@ -31,7 +31,7 @@ function MoodInputPage() {
   const queryParams = new URLSearchParams(location.search);
   const selectedName = queryParams.get('name');
 
-  const handleBubbleClick = (mood) => {
+  const handleBubbleClick = (mood: string) => {
     navigate(`/activity?name=${selectedName}&mood=${mood}`);
   };
 

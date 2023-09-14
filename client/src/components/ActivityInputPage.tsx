@@ -32,7 +32,7 @@ function ActivityInputPage() {
   const selectedMood = queryParams.get('mood');
   const selectedName = queryParams.get('name');
 
-  const handleBubbleClick = (activity) => {
+  const handleBubbleClick = (activity: string) => {
     navigate(
       `/playlist?name=${selectedName}&mood=${selectedMood}&activity=${activity}`
     );

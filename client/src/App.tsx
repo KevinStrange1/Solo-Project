@@ -20,7 +20,7 @@ function App() {
         </header>
       </div>
       <Routes>
-        <Route path="/" element={code ? <NameInputPage /> : <Login />} exact />
+        <Route path="/" element={code ? <NameInputPage /> : <Login />} />
         <Route path="/mood" element={<MoodInputPage />} />
         <Route path="/activity" element={<ActivityInputPage />} />
         <Route
