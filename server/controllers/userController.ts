@@ -5,7 +5,7 @@ import { Request, Response } from 'express';
 
 let spotifyToken = '';
 
-// export const createUser = async (req, res) => {
+// export const createUser = async (req: Request, res: Response) => {
 //   const { name, mood, activity } = req.body;
 
 //   try {
@@ -106,7 +106,7 @@ export const searchSpotify = async (req: Request, res: Response) => {
   }
 };
 
-// export const addSearch = async (req, res) => {
+// export const addSearch = async (req: Request, res: Response) => {
 //   const { name, mood, activity } = req.body;
 //   try {
 //     let user = await User.findOne({ name });
