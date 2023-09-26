@@ -1,4 +1,4 @@
-import express from 'express';
+const express = require('express');
 import {
   // createUser,
   searchSpotify,
@@ -15,4 +15,4 @@ router.get('/spotify-search/:mood/:activity', searchSpotify);
 router.post('/login', login);
 router.post('/refresh', refresh);
 
-export { router };
+module.exports = router;
