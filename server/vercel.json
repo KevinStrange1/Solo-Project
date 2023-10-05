@@ -1,16 +1,3 @@
 {
-  "version": 2,
-  "name": "groovyguru",
-  "builds": [
-    {
-      "src": "index.ts",
-      "use": "vercel/node"
-    }
-  ],
-  "routes": [
-    {
-      "src": "/(.*)",
-      "dest": "/index.ts"
-    }
-  ]
+  "rewrites": [{ "source": "/(.*)", "destination": "/app" }]
 }
