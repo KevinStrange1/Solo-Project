@@ -15,4 +15,4 @@ router.get('/spotify-search/:mood/:activity', searchSpotify);
 router.post('/login', login);
 router.post('/refresh', refresh);
 
-module.exports = router;
+export { router };

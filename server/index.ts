@@ -1,13 +1,13 @@
 require('dotenv').config();
 
-const express = require('express');
-const cors = require('cors');
-const bodyParser = require('body-parser');
-const router = require('./routes');
-// import express from 'express';
-// import cors from 'cors';
-// import bodyParser from 'body-parser';
-// import { router } from './routes';
+// const express = require('express');
+// const cors = require('cors');
+// const bodyParser = require('body-parser');
+// const router = require('./routes');
+import express from 'express';
+import cors from 'cors';
+import bodyParser from 'body-parser';
+import { router } from './routes';
 
 // import {connectDB} from './models/db'
 // connectDB();
@@ -24,4 +24,4 @@ app.listen(port, () => {
   console.log(`Server is running on port: ${port}`);
 });
 
-export default app;
+export { app };
