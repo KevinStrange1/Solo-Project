@@ -67,7 +67,3 @@ npm start
 cd backend
 node index.js
 ```
-
-## Usage
-
-Visit https://groove-guru.vercel.app/ in your browser to use the application. Enter your name, select your current mood and activity, and get a list of Spotify playlists based on your choices.
